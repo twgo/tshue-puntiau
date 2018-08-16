@@ -17,7 +17,7 @@ def main():
         return 拆文分析器.建立句物件(lo, lo)
 
     for tsua in tsuliau:
-        han = tsua['漢字']
+        han = tsua['無合音漢字']
         lo = tsua['口語臺羅']
         句物件 = 揣物件(han, lo)
         for ji in 句物件.篩出字物件():
