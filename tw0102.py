@@ -17,23 +17,31 @@ def 揣物件(han, lo):
         return 拆文分析器.建立句物件(han, lo)
     except 解析錯誤:
         print(tsua)
-        pass
+        raise
     return 拆文分析器.建立句物件(lo, lo)
 
 
 kiatko = []
 for tsua in tsuliau:
-    han = 合音提掉.sub(' XXX ', tsua[1])
+    han = 合音提掉.sub(' XXX ', tsua[1].replace('_', ' '))
     lo = tsua[2].replace('_', ' ')
     pun = []
-    for ji in 揣物件(han, lo).篩出字物件():
-        if ji.音標敢著(通用拼音音標):
-            tl = ji.轉音(通用拼音音標)
-            臺羅 = 查可能本調(tl.型, tl.音)
-            pun.append(臺灣閩南語羅馬字拼音(臺羅).轉通用拼音())
-        else:
-            pun.append(ji.音)
-    kiatko.append(tsua + ['-'.join(pun)])
+    臺羅陣列 = []
+    愛 = True
+    try:
+        for ji in 揣物件(han, lo).篩出字物件():
+            if ji.音標敢著(通用拼音音標):
+                tl = ji.轉音(通用拼音音標)
+                臺羅 = 查可能本調(tl.型, tl.音)
+                臺羅陣列.append(臺羅)
+                pun.append(臺灣閩南語羅馬字拼音(臺羅).轉通用拼音())
+            else:
+                pun.append(ji.音)
+                愛 = False
+    except 解析錯誤:
+        愛 = False
+    if 愛:
+        kiatko.append(tsua + ['-'.join(pun), '-'.join(臺羅陣列), ])
 with open('tw0102pun.json', 'w') as tong:
     json.dump(
         kiatko, tong,
