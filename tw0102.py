@@ -22,7 +22,7 @@ def 揣物件(han, lo):
 
 kiatko = []
 for tsua in tsuliau:
-    han = 合音提掉.sub('XXX', tsua[1])
+    han = 合音提掉.sub(' XXX ', tsua[1])
     lo = tsua[2].replace('_', ' ')
     pun = []
     for ji in 揣物件(han, lo).篩出字物件():
