@@ -4,6 +4,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.通用拼音音標 import 通用拼音音標
 from 轉本調 import 查可能本調
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 
 
 with open('tw0102.json') as trs:
@@ -28,10 +29,11 @@ for tsua in tsuliau:
     for ji in 揣物件(han, lo).篩出字物件():
         if ji.音標敢著(通用拼音音標):
             tl = ji.轉音(通用拼音音標)
-            pun.append(查可能本調(tl.型, tl.音))
+            臺羅 = 查可能本調(tl.型, tl.音)
+            pun.append(臺灣閩南語羅馬字拼音(臺羅).轉通用拼音())
         else:
             pun.append(ji.音)
-    kiatko.append(tsua + [' '.join(pun)])
+    kiatko.append(tsua + ['-'.join(pun)])
 with open('tw0102pun.json', 'w') as tong:
     json.dump(
         kiatko, tong,
