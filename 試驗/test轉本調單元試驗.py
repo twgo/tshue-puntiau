@@ -53,3 +53,13 @@ class 單元試驗(TestCase):
         self.口 = 'hiang7'
         self.辭典 = ['hiong1']
         self.本 = 'hiang1'
+
+    def test口語調毋是羅馬字(self):
+        self.口 = ','
+        self.辭典 = ['，']
+        self.本 = '，'
+
+    def test口語調毋是羅馬字辭典無(self):
+        self.口 = ','
+        self.辭典 = []
+        self.本 = ','

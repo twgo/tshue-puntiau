@@ -33,6 +33,8 @@ def 比對揣出本調(口, 辭典):
             return su
         if pun.聲 == khau.聲 and pun.韻.rstrip('h') == khau.韻:
             return su
+    if khau.音標 is None:
+        return 口
     try:
         ioh = khau.聲 + khau.韻 + pun.調
         if 臺灣閩南語羅馬字拼音(ioh).音標:
