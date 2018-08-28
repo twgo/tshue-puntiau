@@ -24,9 +24,16 @@ def 揣物件(han, lo):
 kiatko = []
 for tsua in tsuliau:
     han = 合音提掉.sub(' XXX ', tsua[1].replace('_', ' '))
-    lo = tsua[2].replace('_', ' ')
+    lo = tsua[2].replace('_', '-')
     pun = []
     臺羅陣列 = []
+    tsitpit = {
+        '檔名': tsua[0],
+        '通用漢羅': tsua[1],
+        '原始通用': tsua[2],
+        '無合音通用漢羅': han,
+        '連字符通用': lo,
+    }
     愛 = True
     try:
         for ji in 揣物件(han, lo).篩出字物件():
@@ -41,8 +48,10 @@ for tsua in tsuliau:
     except 解析錯誤:
         愛 = False
     if 愛:
-        kiatko.append(tsua + ['-'.join(pun), '-'.join(臺羅陣列), ])
-with open('tw0102pun.json', 'w') as tong:
+        tsitpit['通用本調'] = '-'.join(pun)
+        tsitpit['台羅本調'] = '-'.join(臺羅陣列)
+    kiatko.append(tsitpit)
+with open('tw0102pun-dict.json', 'w') as tong:
     json.dump(
         kiatko, tong,
         ensure_ascii=False, sort_keys=True, indent=2
