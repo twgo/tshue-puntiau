@@ -35,19 +35,21 @@ for tsua in tsuliau:
         '連字符通用': lo,
     }
     愛 = True
+    臺羅口語 = []
     try:
         for ji in 揣物件(han, lo).篩出字物件():
             if ji.音標敢著(通用拼音音標):
                 tl = ji.轉音(通用拼音音標)
+                臺羅口語.append(tl.音)
                 臺羅 = 查可能本調(tl.型, tl.音)
                 臺羅陣列.append(臺羅)
                 pun.append(臺灣閩南語羅馬字拼音(臺羅).轉通用拼音())
             else:
-                pun.append(ji.音)
                 愛 = False
     except 解析錯誤:
         愛 = False
     if 愛:
+        tsitpit['臺羅口語'] = '-'.join(臺羅口語)
         tsitpit['通用本調'] = '-'.join(pun)
         tsitpit['台羅本調'] = '-'.join(臺羅陣列)
     kiatko.append(tsitpit)
