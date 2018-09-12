@@ -1,4 +1,4 @@
-from unittest.case import TestCase
+from unittest.case import TestCase, skip
 from 轉本調 import 漢字查教典
 
 
@@ -20,3 +20,8 @@ class 單元試驗(TestCase):
     def test_揣無(self):
         self.漢 = 'ㄠ'
         self.辭典 = []
+
+    @skip
+    def test_呢(self):
+        self.漢 = '呢'
+        self.辭典 = ['ni1', 'ni5', 'neh4', 'ne1', ]

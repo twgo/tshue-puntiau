@@ -63,3 +63,18 @@ class 單元試驗(TestCase):
         self.口 = ','
         self.辭典 = []
         self.本 = ','
+
+    def test_10調(self):
+        self.口 = 'neh10'
+        self.辭典 = ['ni1', 'ni5', 'neh4', 'ne1', ]
+        self.本 = 'neh4'
+
+    def test_10調入聲(self):
+        self.口 = 'neh10'
+        self.辭典 = ['ni1', 'ni5', 'ne1', ]
+        self.本 = 'ne1'
+
+    def test_注入聲(self):
+        self.口 = 'khah10'
+        self.辭典 = ['kan1',]
+        self.本 = 'kan1'
